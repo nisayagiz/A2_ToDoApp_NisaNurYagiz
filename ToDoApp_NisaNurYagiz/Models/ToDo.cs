@@ -42,7 +42,6 @@ namespace ToDoApp_NisaNurYagiz.Models
 
         public virtual Category Category { get; set; }
         public int CategoryId { get; set; }
-        public int Something { get; set; }
         
     }
 }
