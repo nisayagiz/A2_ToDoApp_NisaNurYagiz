@@ -31,11 +31,14 @@ namespace ToDoApp_NisaNurYagiz.Models
         [ScaffoldColumn(false)]
         public DateTime Completed { get; set; }
 
+        [ScaffoldColumn(false)]
+        public DateTime CompletedDate { get; set; }
+
         public int RemainingHour
         {
             get
             {
-                var remainingTime = (DateTime.Now - DueDate);
+                var remainingTime = (DueDate - DateTime.Now);
                 return (int)remainingTime.TotalHours;
             }
         }

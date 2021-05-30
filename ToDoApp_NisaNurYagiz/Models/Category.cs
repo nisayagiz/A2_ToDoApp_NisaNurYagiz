@@ -9,7 +9,7 @@ namespace ToDoApp_NisaNurYagiz.Models
         public int Id { get; set; }
 
         [MaxLength(50)]
-        public string Name { get; setTo; }
+        public string Name { get; set; }
 
         public virtual List<ToDo> ToDoItems { get; set; }
 
