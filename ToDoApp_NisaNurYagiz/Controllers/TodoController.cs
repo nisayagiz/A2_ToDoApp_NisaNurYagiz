@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using ToDoApp_NisaNurYagiz.Data;
 using ToDoApp_NisaNurYagiz.Models;
 
+
 namespace ToDoApp_NisaNurYagiz.Controllers
 {
     public class TodoController : Controller
@@ -20,20 +21,25 @@ namespace ToDoApp_NisaNurYagiz.Controllers
         }
 
         // GET: Todo
-        public async Task<IActionResult> Index(bool showall=false)
+        public async Task<IActionResult> Index(SearchViewModel searchModel)
         {
-            ViewBag.Showall = showall;
+            //ViewBag.Showall = showall;
 
-            var applicationDbContext = _context.ToDoItems.Include(t => t.Category).AsQueryable();
+            var query = _context.ToDoItems.Include(t => t.Category).AsQueryable();
 
-            if (!showall)
+            if (!searchModel.ShowAll)
             {
-                applicationDbContext = applicationDbContext.Where(t => !t.IsCompleted);
+                query = query.Where(t => !t.IsCompleted);
             }
 
-            applicationDbContext = applicationDbContext.OrderBy(t => t.DueDate);
+            if (!String.IsNullOrWhiteSpace(searchModel.SearchText))
+            {
+                query = query.Where(t => t.Title.Contains(searchModel.SearchText, StringComparison.OrdinalIgnoreCase));
+            }
 
-            return View(await applicationDbContext.ToListAsync());
+            query = query.OrderBy(t => t.DueDate);
+
+            return View(await query.ToListAsync());
         }
 
         // GET: Todo/Details/5
