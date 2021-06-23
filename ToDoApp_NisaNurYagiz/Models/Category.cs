@@ -11,6 +11,10 @@ namespace ToDoApp_NisaNurYagiz.Models
         [MaxLength(50)]
         public string Name { get; set; }
 
+        [MaxLength(1500)]
+        [DataType(DataType.MultilineText)]
+        public string Description { get; set; }
+
         public virtual List<ToDo> ToDoItems { get; set; }
 
     }

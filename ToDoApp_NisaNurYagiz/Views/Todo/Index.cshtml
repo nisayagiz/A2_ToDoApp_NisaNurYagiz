@@ -6,7 +6,6 @@
 }
 
 
-
 <h1>Tasks ✨to do✨</h1>
 
 <p>
@@ -21,7 +20,7 @@
     
 </p>
 
-<form asp-action="Index" asp-controller="ToDo">
+<form asp-action="Index" asp-controller="ToDo" method="get">
     <div class="form-group">
         <label asp-for="SearchText" class="control-label"></label>
         <input asp-for="SearchText" class="form-control"/>
@@ -34,7 +33,6 @@
         <input type="submit" value="Search" class="btn btn-primary" /> 
     </div>
 </form>
-
 
 
 <table class="table">
